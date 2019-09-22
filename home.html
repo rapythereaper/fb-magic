@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>welocome page!!</title>
+</head>
+<body>
+<input id="email" type="text" name="email"><br>
+<input id="password" type="password" name="password"><br>
+
+
+	<button onclick="action()">sumbmit</button>
+
+
+	<p id="info"></p>
+	<img src="" id="pic">
+
+
+
+
+
+
+	<script type="text/javascript">
+		function action(){
+			var x=new XMLHttpRequest();
+			var email=document.getElementById('email').value;
+			var password=document.getElementById("password").value;
+			var data=email+"&"+password;
+			x.open("POST","/", true);
+			x.send(data);
+			console.log("sent:::"+data)
+			x.onreadystatechange=function(){
+				  if (this.readyState == 4 && this.status == 200) {
+   						 var data=JSON.parse(this.responseText);
+   						 document.getElementById("info").innerHTML="your_name == "+data.name+"<br>";
+   						 document.getElementById("pic").src=data.img
+
+
+ 				 	};
+ 				 };
+			
+
+		}
+	</script>
+
+</body>
+</html>
