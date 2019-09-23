@@ -4,7 +4,7 @@ var puppeteer=require("puppeteer");
 
 exports.login=async function (user_name,password){
 
-	var browser= await puppeteer.launch(args: ["--no-sanfbox","--disable-setuid-sandbox"],);
+	var browser= await puppeteer.launch({args: ["--no-sandbox","--disable-setuid-sandbox"],});//only for deployment
  
 	var page= await browser.newPage();
 	await page.goto("https://mbasic.facebook.com/",{waitUntil:"networkidle2"});
